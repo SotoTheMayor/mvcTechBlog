@@ -26,6 +26,7 @@ const signup = async (event) => {
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
 
+    console.log("************login.js(public)********" + username + email + password)
     if (username && email && password) {
         const response = await fetch('/api/users', {
             method: 'POST',
@@ -34,6 +35,7 @@ const signup = async (event) => {
         });
 
         if (response.ok) {
+            console.log("******login.js***********" + username + " " + email + " " + password)
             document.location.replace('/')
         } else {
             alert('Failed to sign up')
