@@ -26,8 +26,8 @@ const sess = {
     }),
 };
 
-app.use(routes);
 app.use(session(sess));
+app.use(routes);
 
 app.listen(PORT, () => {
     console.log(`listening on http://localhost:${PORT}`)
