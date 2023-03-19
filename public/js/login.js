@@ -12,7 +12,7 @@ const login = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/')
+            document.location.replace('/home')
         } else {
             alert('Failed to log in')
         }
@@ -27,7 +27,6 @@ const signup = async (event) => {
     const password = document.querySelector('#password-signup').value.trim();
 
     if (username && email && password) {
-        console.log("************login.js(public)********" + username + email + password)
         const response = await fetch('/api/users', {
             method: 'POST',
             body: JSON.stringify({ username, email, password }),
@@ -35,8 +34,8 @@ const signup = async (event) => {
         });
 
         if (response.ok) {
-            // document.location.replace('/')
-            document.querySelector('#resultText').innerText = `User Created -- Welcome to Tech Talk Blog ${username}!!`;
+            document.location.replace('/home')
+            document.querySelector('#resultText').innerText = ` -- Logged in as ${username} -- `;
         } else {
             alert('Failed to sign up')
         }
