@@ -1,24 +1,28 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const User  = require('../../models/user');
+
+// router.get('/', async (req, res) => {
+//     res.render('login');
+// })
 
 // route for creating a new user login
 router.post('/', async (req, res) => {
-        console.log("*********userRoutes*************" + req.body)
-    // try {
-    //     console.log("*********userRoutes*************" + req.body.username + " " + req.body.email + " " + req.body.password)
-    //     const userDB = await User.create({
-    //         username: req.body.username,
-    //         email: req.body.email,
-    //         password: req.body.password
-    //     });
-    //     req.session.save(() => {
-    //         req.session.loggedIn = true;
-    //         req.status(200).json(userDB);
-    //     });
-    // } catch (err) {
-    //     console.log(err);
-    //     res.status(500).json(err)
-    // }
+        // console.log("*********userRoutes*************" + req.body)
+    try {
+        console.log("*********userRoutes*************" + req.body.username + " " + req.body.email + " " + req.body.password)
+        const userDB = await User.create({
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password
+        });
+        req.session.save(() => {
+            req.session.loggedIn = true;
+            res.status(200).json(userDB);
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err)
+    }
 });
 
 //route for logging in with an existing user
