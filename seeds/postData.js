@@ -2,17 +2,20 @@ const Post = require('../models/post');
 
 const postData = [
     {
-        username: 'DougFunny',
         post: 'what even is this?',
-    },
+        user_id: 1,    },
     {
-        username: 'ofMiceandBiggerMice',
         post: 'do you even code bro?',
-    },
+        user_id: 2,    },
     {
-        username: 'Dave',
         post: 'I like computers.',
-    },
+        user_id: 3,    },
+    {
+        post: 'wait... LMAO... what???',
+        user_id: 1,    },
+    {
+        post: 'and carrots',
+        user_id: 3,    },
 ]
 
 const seedPosts = () => Post.bulkCreate(postData);

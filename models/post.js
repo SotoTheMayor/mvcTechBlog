@@ -11,16 +11,19 @@ Post.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        username: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        }, 
         post: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 max: [50],
             },
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'User',
+                key: 'id',
+            }
         },
     },
     {
