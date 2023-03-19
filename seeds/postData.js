@@ -11,7 +11,7 @@ const postData = [
         post: 'I like computers.',
         user_id: 3,    },
     {
-        post: 'wait... LMAO... what???',
+        post: 'wait... LOL... what???',
         user_id: 1,    },
     {
         post: 'and carrots',

@@ -20,7 +20,7 @@ a:visited {
 header {
     padding: 40px;
     text-align: center;
-    background: blue;
+    background: rgb(114, 120, 107);
     color: white;
 }
 
@@ -30,27 +30,28 @@ main {
     flex-grow: 1;
 }
 
-aside {
+/* aside {
     flex: 0;
     background-color: lightblue;
     padding: 80px;
     text-align: left;
     color: white;
-}
+} */
 
 nav {
     display: flex;
     background-color: lightgrey;
 }
 
-nav a {
-    color: white;
+nav a, nav button {
     padding: 14px 20px;
     text-decoration: none;
     text-align: center;
+    border: none;
+    background-color: lightgrey;
 }
 
-nav a:hover {
+nav a:hover, nav button:hover {
     color: lightgray;
     background-color: black;
 }
@@ -73,20 +74,17 @@ img {
 
 .card {
     margin: 20px;
-    flex: 0 1 300px;
     border: 7px double black;
     border-radius: 10px;
     background-color: white;
-    background-color: black;
 }
 
 .login-card {
-    margin: 0 0 20px 0;
-    flex: 0 0 50%;
-    max-width: 50%;
+    margin: 20px;
+    justify-content: space-between;
+    flex: 50%;
     padding: 5px;
-    border: 30px solid black;
-    border-radius: 0.3rem;
+    border: black;
     border-style: double;
     border-width: thick;
     background-color: darkgreen;
@@ -112,12 +110,36 @@ img {
 .container {
     display: flex;
     flex-flow: column wrap;
-    align-content: flex-start;
-    align-items: center;
+    justify-content: space-between;
 }
 
 .instruction {
     color: darkred;
     font-size: 20px;
     font-style: italic;
+}
+
+.post-header {
+    color: black;
+    font-size: 20px;
+    background-color: lightgray;
+}
+
+.post-card {
+    margin: 20px;
+    padding: 5px;
+    border: black;
+    border-style: double;
+    border-width: thick;
+    background-color: lightcyan;
+    color: black;
+}
+
+#returnLink {
+    display: flex;
+    text-decoration: none;
+    font-style: italic;
+    font-size: 20px;
+    justify-content: center;
+    color: darkred;
 }

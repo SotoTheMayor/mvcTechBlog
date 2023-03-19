@@ -1,9 +1,33 @@
-<div class="column justify-space-around">
-    {{#each user.posts as |post|}}
-    {{>post-details}}
-    {{/each}}
+<nav>
     {{#if loggedIn}}
+        <button id="logout">Logout</button>
     {{else}}
-    <a href="/">You must log in to post</a>
+        <a href="/">Login</a>
     {{/if}}
-</div>
+</nav>
+<main class="container container-fluid mt-5">
+    <div class="column justify-space-around">
+        {{#if loggedIn}}
+            <div class="post-card">
+                <h4 class="page-title">Add a post</h4>
+                <form class="form post-form" id="post-form">
+                    <div class="form-group">
+                        <label for="post-text">Contents:</label>
+                        <input class="form-input" type="text" id="post-text" />
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Post</button>
+                    </div>
+                </form>
+            </div>
+        {{else}}
+            <a href="/" id="returnLink">You must log in to post</a>
+        {{/if}}
+        {{#each posts as |post|}}
+            {{>post-details}}
+        {{/each}}
+    </div>
+</main>
+{{#if loggedIn}}
+<script src="/js/logout.js"></script>
+{{/if}}
