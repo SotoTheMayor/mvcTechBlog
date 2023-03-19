@@ -15,11 +15,11 @@ Post.init(
             type: DataTypes.STRING,
             allowNull: false,
         }, 
-        password: {
+        post: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [6],
+                max: [50],
             },
         },
     },

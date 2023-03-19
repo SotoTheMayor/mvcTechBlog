@@ -89,7 +89,7 @@ img {
     border-radius: 0.3rem;
     border-style: double;
     border-width: thick;
-    background-color: greenyellow;
+    background-color: darkgreen;
     color: white;
 }
 
@@ -114,4 +114,10 @@ img {
     flex-flow: column wrap;
     align-content: flex-start;
     align-items: center;
+}
+
+.instruction {
+    color: darkred;
+    font-size: 20px;
+    font-style: italic;
 }

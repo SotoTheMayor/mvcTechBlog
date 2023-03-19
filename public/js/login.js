@@ -35,10 +35,8 @@ const signup = async (event) => {
         });
 
         if (response.ok) {
-            console.log("******login.js***********" + username + " " + email + " " + password)
-            console.log("doing anything???")
-            document.querySelector('#resultText').innerText = '!!!!!!!!User Created';
             // document.location.replace('/')
+            document.querySelector('#resultText').innerText = `User Created -- Welcome to Tech Talk Blog ${username}!!`;
         } else {
             alert('Failed to sign up')
         }

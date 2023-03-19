@@ -1,0 +1,9 @@
+<div class="column justify-space-around">
+    {{#each posts as |post|}}
+    {{>post-details}}
+    {{/each}}
+    {{#if loggedIn}}
+    {{else}}
+    <a href="/">You must log in to post</a>
+    {{/if}}
+</div>
