@@ -8,6 +8,7 @@
 <main class="container container-fluid mt-5">
     <div class="column justify-space-around">
         {{#if loggedIn}}
+            <p class="returnLink">Logged in as {{username}}</p>
             <div class="post-card">
                 <h4 class="page-title">Add a post</h4>
                 <form class="form post-form" id="post-form">
@@ -21,7 +22,7 @@
                 </form>
             </div>
         {{else}}
-            <a href="/" id="returnLink">You must log in to post</a>
+            <a href="/" class="returnLink">You must log in to post</a>
         {{/if}}
         {{#each posts as |post|}}
             {{>post-details}}
