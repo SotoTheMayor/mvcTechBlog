@@ -36,7 +36,9 @@ const signup = async (event) => {
 
         if (response.ok) {
             console.log("******login.js***********" + username + " " + email + " " + password)
-            document.location.replace('/')
+            console.log("doing anything???")
+            document.querySelector('#resultText').innerText = '!!!!!!!!User Created';
+            // document.location.replace('/')
         } else {
             alert('Failed to sign up')
         }
