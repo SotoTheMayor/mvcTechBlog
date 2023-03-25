@@ -15,7 +15,14 @@ Post.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                max: [50],
+                max: [100],
+            },
+        },
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                max: [20],
             },
         },
         user_id: {
