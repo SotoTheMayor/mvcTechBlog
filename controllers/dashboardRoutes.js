@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
         })
         try {
             const userData = await Post.findAll({
-                where: { user_id: req.session.user_id },
+                where: { user_id: loggedUser.id },
                 include: [
                     {
                         model: User,
@@ -37,5 +37,24 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    const loggedUser = await User.findOne({
+        where: { id: req.session.user_id },
+        attributes: { exclude: ['password']}
+    });
+    try {
+        const postDB = await Post.create({
+            post: req.body.post,
+            user_id: loggedUser.id
+        });
+        req.session.save(() => {
+            req.session.loggedIn = true;
+            res.status(200).json(postDB);
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err)
+    }
+});
 
 module.exports = router;

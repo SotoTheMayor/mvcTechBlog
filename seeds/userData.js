@@ -19,7 +19,7 @@ const userData = [
     {
         username: 'Jason',
         email: 'j@j.com',
-        password: 'jjjjjj',
+        password: 'password',
     },
 ]
 

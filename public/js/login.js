@@ -14,7 +14,8 @@ const login = async (event) => {
         if (response.ok) {
             document.location.replace('/home')
         } else {
-            alert('Failed to log in')
+            const x = await response.json()
+            alert(x.message)
         }
     }
 }

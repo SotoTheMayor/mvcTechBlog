@@ -30,20 +30,20 @@ router.post('/login', async (req, res) => {
         });
 
         if (!validUser) {
-            res.status(400).json({message: 'Incorrect email or password.'});
+            res.status(400).json({message: 'Incorrect email.'});
             return;
         }
 
         const validPass = await validUser.checkPassword(req.body.password);
         if (!validPass) {
-            res.status(400).json({message: 'Incorrect email or password.'});
+            res.status(400).json({message: `You input: ${req.body.password}, but password should be ${validUser.password}`});
             return;
         }
 
         req.session.save(() => {
             req.session.user_id = validUser.id;
             req.session.loggedIn = true;
-            res.status(200).json({ user: validUser, message: 'You are logged in.'});
+            res.status(200).json(validUser);
         });
     } catch (err) {
         console.log(err);
