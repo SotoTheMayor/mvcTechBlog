@@ -1,0 +1,36 @@
+<nav>
+    {{#if loggedIn}}
+        <a href="/home">Home</a>
+        <button id="logout">Logout</button>
+    {{else}}
+        <a href="/">Login</a>
+    {{/if}}
+</nav>
+<main class="container container-fluid mt-5">
+    <div class="column justify-space-around">
+        {{#if loggedIn}}
+            <p class="returnLink">Logged in as {{username}}</p>
+            <div class="post-card">
+                <h4 class="page-title">Add a comment</h4>
+                <form class="form comment-form" id="comment-form">
+                    <div class="form-group">
+                        <label for="post-text">Comment Contents:</label>
+                        <input class="form-input" type="text" id="comment-text" />
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Comment</button>
+                    </div>
+                </form>
+            </div>
+        {{else}}
+            <a href="/" class="returnLink">Click here to log in</a>
+        {{/if}}
+        {{#each posts as |post|}}
+            {{>post-details}}
+        {{/each}}
+    </div>
+        <script src="./js/post.js"></script>
+</main>
+{{#if loggedIn}}
+<script src="/js/logout.js"></script>
+{{/if}}
