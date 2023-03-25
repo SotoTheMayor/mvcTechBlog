@@ -16,6 +16,9 @@ const postData = [
     {
         post: 'and carrots',
         user_id: 3,    },
+    {
+        post: 'I created all of you and made you say these things',
+        user_id: 4,    },
 ]
 
 const seedPosts = () => Post.bulkCreate(postData);
