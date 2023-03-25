@@ -44,6 +44,7 @@ router.post('/', async (req, res) => {
     });
     try {
         const postDB = await Post.create({
+            title: req.body.title,
             post: req.body.post,
             user_id: loggedUser.id
         });

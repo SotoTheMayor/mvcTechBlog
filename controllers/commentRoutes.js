@@ -8,8 +8,8 @@ router.get('/', async (req, res) => {
             attributes: { exclude: ['password']}
         })
         try {
-            const userData = await Post.findAll({
-                where: { user_id: loggedUser.id },
+            const postData = await Post.findOne({
+                where: { id: req.session.post_id },
                 include: [
                     {
                         model: User,
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
                     },
                 ],
             });
-            const posts = userData.map((post) =>
+            const posts = postData.map((post) =>
                 post.get({ plain:true })
             );
             res.render('comment', {

@@ -1,12 +1,13 @@
 const post = async (event) => {
     event.preventDefault();
 
+    const title = document.querySelector('#post-title').value.trim();
     const post = document.querySelector('#post-text').value.trim();
 
-    if (post) {
+    if (title && post) {
         const response = await fetch('/dashboard', {
             method: 'POST',
-            body: JSON.stringify({ post }),
+            body: JSON.stringify({ title, post }),
             headers: { 'Content-Type': "application/json" },
         });
 
@@ -18,7 +19,5 @@ const post = async (event) => {
         }
     }
 }
-
-
 
 document.querySelector('#post-form').addEventListener('submit', post);
