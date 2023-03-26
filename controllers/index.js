@@ -3,12 +3,12 @@ const apiRoutes = require('./api');
 const loginRoutes = require('./loginRoutes');
 const homeRoutes = require('./homeRoutes');
 const dashboardRoutes = require('./dashboardRoutes');
-const commentRoutes = require('./commentRoutes');
+const postRoutes = require('./postRoutes');
 
 router.use('/', loginRoutes);
 router.use('/api', apiRoutes);
 router.use('/home', homeRoutes);
 router.use('/dashboard', dashboardRoutes);
-router.use('/comment', commentRoutes);
+router.use('/post', postRoutes);
 
 module.exports = router;

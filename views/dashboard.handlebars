@@ -26,15 +26,13 @@
                     </div>
                 </form>
             </div>
+            {{#each posts as |post|}}
+                {{>post-details}}
+            {{/each}}
+            <script src="./js/createPost.js"></script>
+            <script src="/js/logout.js"></script>
         {{else}}
-            <a href="/" class="returnLink">Click here to log in</a>
+            <a href="/" class="returnLink">You must be logged in to view this page</a>
         {{/if}}
-        {{#each posts as |post|}}
-            {{>post-details}}
-        {{/each}}
     </div>
-        <script src="./js/post.js"></script>
 </main>
-{{#if loggedIn}}
-<script src="/js/logout.js"></script>
-{{/if}}

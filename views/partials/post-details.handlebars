@@ -1,15 +1,12 @@
 <div class="post-card container">
     <div class="post-header">
-    <div class="row justify-content-between">
-    <div class="col-4 text-center">
-        <a href="/comment">{{title}}</a>
+        <div class="row justify-content-between">
+            <div class="col-4 text-center">
+                <a class="postClick" href="/post/{{id}}">{{title}}</a>
+            </div>
+            <div class="col-4">
+                -- {{user.username}}
+            </div>
+        </div>
     </div>
-    <div class="col-4">
-        -- {{user.username}}
-    </div>
-    </div>
-    </div>
-    {{!-- <div class="post-body">
-        {{post}}
-    </div> --}}
 </div>

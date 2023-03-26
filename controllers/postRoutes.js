@@ -1,15 +1,25 @@
 const router = require('express').Router();
 const { Post, User } = require('../models');
 
-router.get('/', async (req, res) => {
+// router.get('/', async (req, res) => {
+//     const loggedUser = await User.findOne({
+//         where: { id: req.session.user_id },
+//         attributes: { exclude: ['password']}
+//     })
+//     res.render('post', {
+//         username: loggedUser.username,
+//         loggedIn: req.session.loggedIn,
+//     })
+// })
+
+router.get('/:id', async (req, res) => {
     if (req.session.loggedIn) {
         const loggedUser = await User.findOne({
             where: { id: req.session.user_id },
             attributes: { exclude: ['password']}
         })
         try {
-            const postData = await Post.findOne({
-                where: { id: req.session.post_id },
+            const postData = await Post.findByPk(req.params.id, {
                 include: [
                     {
                         model: User,
@@ -17,12 +27,15 @@ router.get('/', async (req, res) => {
                     },
                 ],
             });
-            const posts = postData.map((post) =>
-                post.get({ plain:true })
-            );
-            res.render('comment', {
-                userData,
-                posts,
+            const post = postData.get({ plain:true });
+            console.log('+++++++++++++++ ' + post.user.username + '+++++++++++++++++')
+            res.render('post', {
+                // userData,
+                post: {
+                    title: post.title,
+                    post: post.post,
+                    postername: post.user.username,
+                },
                 username: loggedUser.username,
                 loggedIn: req.session.loggedIn,
             });
@@ -31,7 +44,7 @@ router.get('/', async (req, res) => {
             res.status(500).json(err);
         }
     } else {
-            res.render('comment', {
+            res.render('post', {
                 loggedIn: req.session.loggedIn,
             });
     }
