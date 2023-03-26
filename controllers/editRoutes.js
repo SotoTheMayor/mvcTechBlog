@@ -54,27 +54,40 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/:id', async (req, res) => {
-    const loggedUser = await User.findOne({
-        where: { id: req.session.user_id },
-        attributes: { exclude: ['password']}
-    });
-        try {
-        console.log('+++++++++++++++++++++++' + req.body.post_id + '+++++++++++++++++++++++')
-        const commentDB = await Comment.create({
-            comment: req.body.comment,
-            timestamp: getTime,
-            user_id: loggedUser.id,
-            post_id: req.body.post_id,
+// router.post('/:id', async (req, res) => {
+//     const loggedUser = await User.findOne({
+//         where: { id: req.session.user_id },
+//         attributes: { exclude: ['password']}
+//     });
+//         try {
+//         console.log('+++++++++++++++++++++++' + req.body.post_id + '+++++++++++++++++++++++')
+//         const commentDB = await Comment.create({
+//             comment: req.body.comment,
+//             timestamp: getTime,
+//             user_id: loggedUser.id,
+//             post_id: req.body.post_id,
+//         });
+//         req.session.save(() => {
+//             res.status(200).json(commentDB);
+//         });
+//     } catch (err) {
+//         console.log(err);
+//         res.status(500).json(err)
+//     }
+// });
+
+router.put('/:id', async (req, res) => {
+    try {
+        Post.destroy({
+            where: { id: req.body.post_id}
         });
-        req.session.save(() => {
-            res.status(200).json(commentDB);
-        });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err)
-    }
-});
+        res.status(200).json();
+        } catch (err) {
+            console.log(err);
+            res.status(500).json(err)
+        }
+})
+
 
 router.delete('/:id', async (req, res) => {
     console.log('+++++++++++++++++++++++' + req.body.post_id + '+++++++++++++++++++++++')

@@ -106,6 +106,21 @@ nav a:hover, nav button:hover {
     font-style: italic;
 }
 
+.form-input {
+    width: 100%;
+    height: 120px;
+}
+
+.signup-fields {
+    width: 100%;
+    height: 30px;
+}
+
+#post-title{
+    width: 100%;
+    height: 30px;
+}
+
 .post-header {
     color: black;
     font-size: 20px;
