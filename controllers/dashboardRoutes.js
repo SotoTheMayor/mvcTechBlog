@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const dayjs = require("dayjs");
+const getTime = require('../utils/time');
 const { Post, User } = require('../models');
 
 router.get('/', async (req, res) => {
@@ -43,9 +45,11 @@ router.post('/', async (req, res) => {
         attributes: { exclude: ['password']}
     });
     try {
+
         const postDB = await Post.create({
             title: req.body.title,
             post: req.body.post,
+            timestamp: getTime,
             user_id: loggedUser.id
         });
         req.session.save(() => {

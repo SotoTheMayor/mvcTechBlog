@@ -1,4 +1,5 @@
-const router = require('express').Router();
+const router = require('express').Router({ mergeParams:true });
+
 const { Post, User, Comment } = require('../models');
 
 router.get('/:id', async (req, res) => {
@@ -34,6 +35,7 @@ router.get('/:id', async (req, res) => {
                     title: post.title,
                     post: post.post,
                     postername: post.user.username,
+                    timestamp: post.timestamp,
                     post_id: post.post_id,
                 },
                 comments,
@@ -51,31 +53,28 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// const urlParams = new URLSearchParams(window.location.search);
 router.post('/:id', async (req, res) => {
-    console.log('+++++++++++++++++++++++' + req.path.toLocaleLowerCase() + '+++++++++++++++++++++++')
     const loggedUser = await User.findOne({
         where: { id: req.session.user_id },
         attributes: { exclude: ['password']}
     });
     // const activePost = await Post.findOne({
-    //     where: { id: req.params.id },
-    // });
-    // const activePost = await Post.findByPk(req.params.id);
-    // const post = activePost.get({ plain:true });
-    // const post = activePost.map((post) =>
-    // post.get({ plain:true })
-    // );
-    // console.log('+++++++++++++' + a + '++++++++++++++')
-    try {
+        //     where: { id: req.params.id },
+        // });
+        // const activePost = await Post.findByPk(req.params.id);
+        // const post = activePost.get({ plain:true });
+        // const post = activePost.map((post) =>
+        // post.get({ plain:true })
+        // );
+        try {
+        console.log('+++++++++++++++++++++++' + req.params.id + '+++++++++++++++++++++++')
         const commentDB = await Comment.create({
             comment: req.body.comment,
             user_id: loggedUser.id,
-            post_id: activePost,
+            post_id: req.params.id,
         });
         req.session.save(() => {
-            // req.session.loggedIn = true;
-            res.status(200).json(commentDB);
+            // res.status(200).json(commentDB);
         });
     } catch (err) {
         console.log(err);
