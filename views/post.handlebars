@@ -12,14 +12,18 @@
     <div class="post-header">
         <div class="row justify-content-between">
             <div class="col-4 text-center">
-                <a class="postClick" href="/post/{{id}}">{{post.title}}</a>
+                {{post.title}}
             </div>
             <div class="col-4">
                 -- {{post.postername}}
             </div>
         </div>
     </div>
+    <div class="post-body">{{post.post}}</div>
 </div>
+        {{#each comments as |comment|}}
+            {{>comment-details}}
+        {{/each}}
         {{#if loggedIn}}
             <p class="returnLink">Logged in as {{username}}</p>
             <div class="post-card">
