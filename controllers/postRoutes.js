@@ -1,4 +1,5 @@
 const router = require('express').Router({ mergeParams:true });
+const getTime = require('../utils/time')
 
 const { Post, User, Comment } = require('../models');
 
@@ -58,23 +59,16 @@ router.post('/:id', async (req, res) => {
         where: { id: req.session.user_id },
         attributes: { exclude: ['password']}
     });
-    // const activePost = await Post.findOne({
-        //     where: { id: req.params.id },
-        // });
-        // const activePost = await Post.findByPk(req.params.id);
-        // const post = activePost.get({ plain:true });
-        // const post = activePost.map((post) =>
-        // post.get({ plain:true })
-        // );
         try {
-        console.log('+++++++++++++++++++++++' + req.params.id + '+++++++++++++++++++++++')
+        console.log('+++++++++++++++++++++++' + req.body.post_id + '+++++++++++++++++++++++')
         const commentDB = await Comment.create({
             comment: req.body.comment,
+            timestamp: getTime,
             user_id: loggedUser.id,
-            post_id: req.params.id,
+            post_id: req.body.post_id,
         });
         req.session.save(() => {
-            // res.status(200).json(commentDB);
+            res.status(200).json(commentDB);
         });
     } catch (err) {
         console.log(err);

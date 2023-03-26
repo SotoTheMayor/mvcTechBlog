@@ -1,7 +1,6 @@
 const router = require('express').Router();
-const dayjs = require("dayjs");
 const getTime = require('../utils/time');
-const { Post, User } = require('../models');
+const { Post, User, Comment } = require('../models');
 
 router.get('/', async (req, res) => {
     if (req.session.loggedIn) {
@@ -61,5 +60,28 @@ router.post('/', async (req, res) => {
         res.status(500).json(err)
     }
 });
+
+router.delete('/post/:id', async (req, res) => {
+    try {
+    Post.destroy({
+        where: { post_id: req.params.id}
+    })
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err)
+    }
+})
+
+router.delete('/comment/:id', async (req, res) => {
+    try {
+    Comment.destroy({
+        where: { comment_id: req.params.id}
+    })
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err)
+    }
+})
+
 
 module.exports = router;
