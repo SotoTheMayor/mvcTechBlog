@@ -1,4 +1,4 @@
-const viewPost = async () => {
+// const viewPost = async () => {
 //     const response = await fetch('/api/users/logout', {
 //         method: 'POST',
 //         headers: { 'Content-Type': "application/json" },
@@ -6,11 +6,11 @@ const viewPost = async () => {
 //     if (response.ok) {
 //         document.location.replace('/')
 //     } else {
-        alert('Post was clicked')
+        // alert('Post was clicked')
 //     }
-}
+// }
 
 
 
 
-document.querySelector('.postClick').addEventListener('click', viewPost);
+// document.querySelector('#comment-form').addEventListener('click', viewPost);

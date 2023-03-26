@@ -1,17 +1,6 @@
 const router = require('express').Router();
 const { Post, User, Comment } = require('../models');
 
-// router.get('/', async (req, res) => {
-//     const loggedUser = await User.findOne({
-//         where: { id: req.session.user_id },
-//         attributes: { exclude: ['password']}
-//     })
-//     res.render('post', {
-//         username: loggedUser.username,
-//         loggedIn: req.session.loggedIn,
-//     })
-// })
-
 router.get('/:id', async (req, res) => {
     if (req.session.loggedIn) {
         const loggedUser = await User.findOne({
@@ -41,11 +30,11 @@ router.get('/:id', async (req, res) => {
             comment.get({ plain:true })
         );
             res.render('post', {
-                // userData,
                 post: {
                     title: post.title,
                     post: post.post,
                     postername: post.user.username,
+                    post_id: post.post_id,
                 },
                 comments,
                 username: loggedUser.username,
@@ -62,22 +51,30 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+// const urlParams = new URLSearchParams(window.location.search);
+router.post('/:id', async (req, res) => {
+    console.log('+++++++++++++++++++++++' + req.path.toLocaleLowerCase() + '+++++++++++++++++++++++')
     const loggedUser = await User.findOne({
         where: { id: req.session.user_id },
         attributes: { exclude: ['password']}
     });
-    const postId = await Comment.findOne({
-        where: { id: req.session.post_id },
-    });
+    // const activePost = await Post.findOne({
+    //     where: { id: req.params.id },
+    // });
+    // const activePost = await Post.findByPk(req.params.id);
+    // const post = activePost.get({ plain:true });
+    // const post = activePost.map((post) =>
+    // post.get({ plain:true })
+    // );
+    // console.log('+++++++++++++' + a + '++++++++++++++')
     try {
         const commentDB = await Comment.create({
             comment: req.body.comment,
             user_id: loggedUser.id,
-            post_id: postId.id,
+            post_id: activePost,
         });
         req.session.save(() => {
-            req.session.loggedIn = true;
+            // req.session.loggedIn = true;
             res.status(200).json(commentDB);
         });
     } catch (err) {
