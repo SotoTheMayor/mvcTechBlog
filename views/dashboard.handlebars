@@ -27,10 +27,9 @@
                 </form>
             </div>
             {{#each posts as |post|}}
-                {{>post-details}}
+                {{>dashboard-posts}}
             {{/each}}
             <script src="./js/createPost.js"></script>
-            <script src="./js/delete.js"></script>
             <script src="./js/logout.js"></script>
         {{else}}
             <a href="/" class="returnLink">You must be logged in to view this page</a>

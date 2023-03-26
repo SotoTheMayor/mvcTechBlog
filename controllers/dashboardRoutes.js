@@ -61,27 +61,4 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.delete('/post/:id', async (req, res) => {
-    try {
-    Post.destroy({
-        where: { post_id: req.params.id}
-    })
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err)
-    }
-})
-
-router.delete('/comment/:id', async (req, res) => {
-    try {
-    Comment.destroy({
-        where: { comment_id: req.params.id}
-    })
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err)
-    }
-})
-
-
 module.exports = router;

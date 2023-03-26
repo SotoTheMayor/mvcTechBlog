@@ -1,0 +1,49 @@
+<nav>
+    {{#if loggedIn}}
+        <a href="/home">Home</a>
+        <button id="logout">Logout</button>
+    {{else}}
+        <a href="/">Login</a>
+    {{/if}}
+</nav>
+<main class="container container-fluid mt-5">
+    <div class="column justify-space-around">
+<div class="post-card container">
+    <div class="post-header">
+        <div class="row justify-content-between">
+            <div class="col-4 text-center">
+                {{post.title}}
+            </div>
+            <div class="col-8 text-end pe-3">
+                -- {{post.postername}} -- {{post.timestamp}}
+            </div>
+        </div>
+    </div>
+    <div class="post-body">{{post.post}}</div>
+    <button class="btn btn-primary" id="post-delete" type="button">Delete</button>
+</div>
+        {{#each comments as |comment|}}
+            {{>comment-details}}
+        {{/each}}
+        {{#if loggedIn}}
+            <p class="returnLink">Logged in as {{username}}</p>
+            <div class="post-card">
+                <h4 class="page-title">Add a comment</h4>
+                <form class="form comment-form" id="comment-form">
+                    <div class="form-group">
+                        <label for="post-text">Comment Contents:</label>
+                        <input class="form-input" type="text" id="comment-text" />
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Comment</button>
+                    </div>
+                </form>
+            </div>
+            <script src="../../js/createComment.js"></script>
+            <script src="../../js/delete.js"></script>
+            <script src="../../js/logout.js"></script>
+        {{else}}
+            <a href="/" class="returnLink">Click here to log in</a>
+        {{/if}}
+    </div>
+</main>
