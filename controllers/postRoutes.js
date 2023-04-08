@@ -90,6 +90,7 @@ router.get('/:id', async (req, res) => {
                 timestamp: post.timestamp,
                 post_id: post.post_id,
             },
+            comments,
             loggedIn: req.session.loggedIn,
         });
         } catch (err) {
