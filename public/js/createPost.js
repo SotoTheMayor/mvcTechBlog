@@ -12,7 +12,7 @@ const post = async (event) => {
         });
 
         if (response.ok) {
-            document.location.reload('/dashboard')
+            document.location.replace('/dashboard')
         } else {
             const x = await response.json()
             alert(x.message)

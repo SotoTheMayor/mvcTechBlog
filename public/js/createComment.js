@@ -14,7 +14,6 @@ const comment = async (event) => {
 
         if (response.ok) {
             document.location.reload()
-            // document.location.search(`/post/${post_id}`)
         } else {
             const x = await response.json()
             // alert(x.message)
@@ -22,4 +21,14 @@ const comment = async (event) => {
     }
 }
 
+const switchToEdit = async (event) => {
+    event.preventDefault();
+
+    const params = window.location;
+    const post_id = params.toString().split('/')[params.toString().split('/').length - 1];
+
+            document.location.replace(`/post/edit/${post_id}`)
+}
+
 document.querySelector('#comment-form').addEventListener('submit', comment);
+document.querySelector('#editRoute').addEventListener('click', switchToEdit);

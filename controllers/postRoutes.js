@@ -31,6 +31,12 @@ router.get('/:id', async (req, res) => {
             const comments = commentData.map((comment) =>
             comment.get({ plain:true })
         );
+        let postOwner
+        if (loggedUser.id == postData.user_id) {
+            postOwner = true;
+        } else {
+            postOwner = false;
+        }
             res.render('post', {
                 post: {
                     title: post.title,
@@ -42,6 +48,7 @@ router.get('/:id', async (req, res) => {
                 comments,
                 username: loggedUser.username,
                 loggedIn: req.session.loggedIn,
+                postOwner: postOwner,
             });
         } catch (err) {
             console.log(err);
@@ -60,7 +67,6 @@ router.post('/:id', async (req, res) => {
         attributes: { exclude: ['password']}
     });
         try {
-        console.log('+++++++++++++++++++++++' + req.body.post_id + '+++++++++++++++++++++++')
         const commentDB = await Comment.create({
             comment: req.body.comment,
             timestamp: getTime,
