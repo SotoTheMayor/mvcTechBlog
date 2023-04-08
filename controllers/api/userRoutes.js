@@ -36,7 +36,7 @@ router.post('/login', async (req, res) => {
 
         const validPass = await validUser.checkPassword(req.body.password);
         if (!validPass) {
-            res.status(400).json({message: `You input: ${req.body.password}, but password should be ${validUser.password}`});
+            res.status(400).json({message: `Wrong password buddy`});
             return;
         }
 
