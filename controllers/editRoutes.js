@@ -1,9 +1,10 @@
 const router = require('express').Router({ mergeParams:true });
 const getTime = require('../utils/time')
+const ownerTest = require('../utils/ownerTest');
 
 const { Post, User, Comment } = require('../models');
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', ownerTest, async (req, res) => {
     if (req.session.loggedIn) {
         const loggedUser = await User.findOne({
             where: { id: req.session.user_id },

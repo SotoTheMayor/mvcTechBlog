@@ -31,6 +31,7 @@ router.get('/:id', async (req, res) => {
             const comments = commentData.map((comment) =>
             comment.get({ plain:true })
         );
+        //test to make edit button visible if logged user is post owner
         let postOwner
         if (loggedUser.id == postData.user_id) {
             postOwner = true;
@@ -48,7 +49,7 @@ router.get('/:id', async (req, res) => {
                 comments,
                 username: loggedUser.username,
                 loggedIn: req.session.loggedIn,
-                postOwner: postOwner,
+                postOwner,
             });
         } catch (err) {
             console.log(err);
