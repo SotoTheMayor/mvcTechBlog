@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="post-body">{{post.post}}</div>
-    <button class="btn btn-primary" id="post-delete" type="button">Delete</button>
+    <button class="btn btn-primary postButtons" id="post-delete" type="button">Delete</button>
 </div>
         {{#each comments as |comment|}}
             {{>comment-details}}
@@ -37,7 +37,7 @@
                         <textarea class="form-input" type="text" id="update-body" value="{{post.post}}"></textarea>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" id="post-update" type="submit">Update</button>
+                        <button class="btn btn-primary postButtons" id="post-update" type="submit">Update</button>
                     </div>
                 </form>
             </div>
