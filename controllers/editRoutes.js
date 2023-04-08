@@ -1,9 +1,12 @@
+// route for /post/edit/:id
+// allows for updating and deleting of posts, middleware 
+// and html button removal prevents these features for anything not owned by logged user
 const router = require('express').Router({ mergeParams:true });
-const getTime = require('../utils/time')
 const ownerTest = require('../utils/ownerTest');
 
 const { Post, User, Comment } = require('../models');
 
+//displays page only if logged user owns the post
 router.get('/:id', ownerTest, async (req, res) => {
     if (req.session.loggedIn) {
         const loggedUser = await User.findOne({
@@ -55,6 +58,7 @@ router.get('/:id', ownerTest, async (req, res) => {
     }
 });
 
+// updates post based on textarea submission
 router.put('/:id', async (req, res) => {
     try {
         Post.update({
@@ -70,7 +74,7 @@ router.put('/:id', async (req, res) => {
         }
 })
 
-
+// deletes post
 router.delete('/:id', async (req, res) => {
     try {
     Comment.destroy({
@@ -80,17 +84,6 @@ router.delete('/:id', async (req, res) => {
         where: { id: req.body.post_id}
     });
     res.status(200).json();
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err)
-    }
-})
-
-router.delete('/comment/:id', async (req, res) => {
-    try {
-    Comment.destroy({
-        where: { comment_id: req.params.id}
-    })
     } catch (err) {
         console.log(err);
         res.status(500).json(err)

@@ -1,9 +1,12 @@
+// route for /post
 const router = require('express').Router({ mergeParams:true });
 const getTime = require('../utils/time')
 
 const { Post, User, Comment } = require('../models');
 
+// gets Post specific info based on query params
 router.get('/:id', async (req, res) => {
+// majority of page only renders if logged in
     if (req.session.loggedIn) {
         const loggedUser = await User.findOne({
             where: { id: req.session.user_id },
@@ -56,12 +59,14 @@ router.get('/:id', async (req, res) => {
             res.status(500).json(err);
         }
     } else {
+// mostly blank screen with instructions to log in first if not loggedIn
             res.render('post', {
                 loggedIn: req.session.loggedIn,
             });
     }
 });
 
+// add a comment to the current post identified in the query params
 router.post('/:id', async (req, res) => {
     const loggedUser = await User.findOne({
         where: { id: req.session.user_id },

@@ -1,3 +1,4 @@
+// logic for logging in
 const login = async (event) => {
     event.preventDefault();
 
@@ -20,6 +21,7 @@ const login = async (event) => {
     }
 }
 
+// logic for creating a new user
 const signup = async (event) => {
     event.preventDefault();
 

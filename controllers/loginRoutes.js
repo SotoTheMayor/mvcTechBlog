@@ -1,6 +1,8 @@
+// base route for '/'
 const router = require('express').Router();
 const { User } = require('../models')
 
+// minor adjustments to onscreen text based on login status
 router.get('/', async (req, res) => {
     try {
         if (req.session.loggedIn) {

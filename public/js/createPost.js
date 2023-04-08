@@ -1,3 +1,4 @@
+// logic to create a post based on passed form data
 const post = async (event) => {
     event.preventDefault();
 

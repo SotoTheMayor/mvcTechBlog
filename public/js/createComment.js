@@ -1,3 +1,5 @@
+// logic for creating a new comment based on passed form data 
+//associates to a specific post
 const comment = async (event) => {
     event.preventDefault();
 
@@ -21,6 +23,7 @@ const comment = async (event) => {
     }
 }
 
+// logic to allow editing of owned posts
 const switchToEdit = async (event) => {
     event.preventDefault();
 

@@ -1,3 +1,4 @@
+// route for /dashboard
 const router = require('express').Router();
 const getTime = require('../utils/time');
 const { Post, User, Comment } = require('../models');

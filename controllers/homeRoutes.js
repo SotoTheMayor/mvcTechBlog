@@ -1,7 +1,10 @@
+// route for /home
 const router = require('express').Router();
 const { Post, User } = require('../models');
 
+//displays page with button and screen text adjustments based on loggedIn status
 router.get('/', async (req, res) => {
+//if loggedIn
     if (req.session.loggedIn) {
     const loggedUser = await User.findOne({
         where: { id: req.session.user_id },
@@ -29,6 +32,7 @@ router.get('/', async (req, res) => {
         res.status(500).json(err);
     }
 } else {
+//if not loggedIn
     try {
         const postData = await Post.findAll({
             include: [

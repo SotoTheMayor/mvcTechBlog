@@ -1,3 +1,4 @@
+// connecting different models together and establishing relationship
 const User = require('./user');
 const Post = require('./post');
 const Comment = require('./comment');
