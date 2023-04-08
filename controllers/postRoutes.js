@@ -59,10 +59,43 @@ router.get('/:id', async (req, res) => {
             res.status(500).json(err);
         }
     } else {
-// mostly blank screen with instructions to log in first if not loggedIn
-            res.render('post', {
-                loggedIn: req.session.loggedIn,
+// only post displayed with instructions to log in first if not loggedIn
+        try {
+            const postData = await Post.findByPk(req.params.id, {
+                include: [
+                    {
+                    model: User,
+                    attributes: ['username'],
+                    },
+                ],
             });
+            const post = postData.get({ plain:true });
+            const commentData = await Comment.findAll({
+                where: { post_id: post.id },
+                include: [
+                    {
+                    model: User,
+                    attributes: ['username'],
+                    },
+                ],
+            });
+            const comments = commentData.map((comment) =>
+                comment.get({ plain:true })
+            );
+        res.render('post', {
+            post: {
+                title: post.title,
+                post: post.post,
+                postername: post.user.username,
+                timestamp: post.timestamp,
+                post_id: post.post_id,
+            },
+            loggedIn: req.session.loggedIn,
+        });
+        } catch (err) {
+            console.log(err);
+            res.status(500).json(err);
+        }
     }
 });
 

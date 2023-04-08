@@ -1,4 +1,4 @@
-// base route for '/'
+// route for /login
 const router = require('express').Router();
 const { User } = require('../models')
 

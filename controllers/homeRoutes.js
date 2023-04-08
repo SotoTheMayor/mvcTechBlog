@@ -1,4 +1,4 @@
-// route for /home
+// base route for '/'
 const router = require('express').Router();
 const { Post, User } = require('../models');
 
