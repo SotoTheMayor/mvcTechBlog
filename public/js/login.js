@@ -13,7 +13,7 @@ const login = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/')
+            document.location.assign('/')
         } else {
             const x = await response.json()
             alert(x.message)
