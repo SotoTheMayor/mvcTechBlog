@@ -24,7 +24,7 @@ When first visiting the site, you are greeted by the homepage, which is a list o
 
 [mvcTechBlog Website](https://sotostechblog.herokuapp.com/)
 
-![description of image](./**img_path**)
+![video demo of working site](./assets/mvcTechBlog%20Demo.webm)
 
 ## License
 
