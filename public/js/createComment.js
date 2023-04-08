@@ -18,7 +18,7 @@ const comment = async (event) => {
             document.location.reload()
         } else {
             const x = await response.json()
-            // alert(x.message)
+            alert(x.message)
         }
     }
 }

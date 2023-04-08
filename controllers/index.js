@@ -6,9 +6,9 @@ const dashboardRoutes = require('./dashboardRoutes');
 const postRoutes = require('./postRoutes');
 const editRoutes = require('./editRoutes');
 
-router.use('/', loginRoutes);
+router.use('/login', loginRoutes);
 router.use('/api', apiRoutes);
-router.use('/home', homeRoutes);
+router.use('/', homeRoutes);
 router.use('/dashboard', dashboardRoutes);
 router.use('/post', postRoutes);
 router.use('/post/edit', editRoutes);

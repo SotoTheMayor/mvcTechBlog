@@ -13,7 +13,7 @@ const login = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/home')
+            document.location.replace('/')
         } else {
             const x = await response.json()
             alert(x.message)
@@ -37,7 +37,7 @@ const signup = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/home')
+            document.location.replace('/')
             document.querySelector('#resultText').innerText = ` -- Logged in as ${username} -- `;
         } else {
             alert('Failed to sign up')
